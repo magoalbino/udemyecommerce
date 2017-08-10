@@ -197,6 +197,8 @@ class Router implements \Iterator
 
         //Invoke callable
         if (is_callable($route->getCallable())) {
+            var_dump($route);
+            die;
             call_user_func_array($route->getCallable(), array_values($route->getParams()));
 
             return true;
