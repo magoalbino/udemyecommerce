@@ -187,7 +187,6 @@ class Router implements \Iterator
         if (substr($route->getPattern(), -1) === '/' && substr($this->resourceUri, -1) !== '/') {
             throw new Exception\RequestSlash();
         }
-
         //Invoke middleware
         foreach ($route->getMiddleware() as $mw) {
             if (is_callable($mw)) {
@@ -195,10 +194,8 @@ class Router implements \Iterator
             }
         }
 
-        //Invoke callable
+        //Invoke callables
         if (is_callable($route->getCallable())) {
-            var_dump($route);
-            die;
             call_user_func_array($route->getCallable(), array_values($route->getParams()));
 
             return true;
